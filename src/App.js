@@ -1,13 +1,12 @@
+import Sorteio from 'components/sorteio';
 import './App.css';
-import Layout from "components/Layout";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <div className="App">
-        <Layout style={{color: '#c62525'}} texto={'World'}>
-            Hello
-        </Layout>
+        <Sorteio/>
     </div>
   );
 }
