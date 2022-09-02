@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Col, Row} from "react-bootstrap";
+import {randomInt} from "helpers/random";
 
 export default function Sorteio() {
     const [inicial, setInicial] = useState()
@@ -10,7 +11,7 @@ export default function Sorteio() {
 
     useEffect(() => {
         if (sorteado > 0) {
-            setSorteados([...sorteados, sorteado])
+            setSorteados([sorteado, ...sorteados])
         }
     }, [sorteado])
 
@@ -24,7 +25,13 @@ export default function Sorteio() {
                 </div>
                 <form onSubmit={(e) => {
                         e.preventDefault();
-                        setSorteado(inicial)
+
+                        if (inicial > final) {
+                            alert("O número inicial deve ser menor que o final")
+                            return;
+                        }
+
+                        setSorteado(randomInt(+inicial, +final))
                     }}>
                     <div className="bg-white shadow-sm p-4 border rounded">
                         <div className="form-group">
@@ -59,7 +66,7 @@ export default function Sorteio() {
                         Último Número Sorteado
                     </div>
 
-                    <div className="bg-white shadow-sm p-2 border rounded">
+                    <div className="bg-white shadow-sm p-2 border rounded text-primary">
                         <span style={{fontSize: '2rem'}}>{sorteado || '-'}</span>
                     </div>
 
